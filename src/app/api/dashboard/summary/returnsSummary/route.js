@@ -16,30 +16,30 @@ export async function GET(req, res) {
                 UserEmail: UserEmail,
             },
         });
-        let last30Days = await prisma.return_summarys.groupBy({
-            by: ['createdAt'],
-            _sum: {
-                GrandTotal: true,
-            },
-            where: {
-                UserEmail: UserEmail,
-            },
-            orderBy: {
-                createdAt: 'desc',
-            },
-            take: 30,
-        });
+        // let last30Days = await prisma.return_summarys.groupBy({
+        //     by: ['createdAt'],
+        //     _sum: {
+        //         GrandTotal: true,
+        //     },
+        //     where: {
+        //         UserEmail: UserEmail,
+        //     },
+        //     orderBy: {
+        //         createdAt: 'desc',
+        //     },
+        //     take: 30,
+        // });
          // Format createdAt date using moment.js
-        last30Days = last30Days.map((entry) => ({
-            createdAt: moment(entry.createdAt).format("YYYY-MM-DD"),
-            TotalAmount: entry._sum.GrandTotal,
-        }));
+        // last30Days = last30Days.map((entry) => ({
+        //     createdAt: moment(entry.createdAt).format("YYYY-MM-DD"),
+        //     TotalAmount: entry._sum.GrandTotal,
+        // }));
         
         // Format createdAt dates using moment.js
         // last30Days.forEach(entry => {
         //     entry.createdAt = moment(entry.createdAt).format('YYYY-MM-DD');
         // });
-        return NextResponse.json({ status: "success", data: { totalAmount, last30Days } })
+        return NextResponse.json({ status: "success", data: { totalAmount } })
 
     } catch (e) {
         return  NextResponse.json({status:"fail",data:e.toString()})

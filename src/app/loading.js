@@ -12,6 +12,6 @@ export default function Loading() {
                 <path id="L" d="m 18 9 l 0 30 l 16 0" />
             </svg>
         </div>
-        //<div></div>
+        // <div></div>
     );
 }
